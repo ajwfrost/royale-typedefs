@@ -38,6 +38,7 @@
         <path-element>../../../target/downloads/browser/w3c_anim_timing.js</path-element>
         <path-element>../../../target/downloads/browser/w3c_audio.js</path-element>
         <path-element>../../../target/downloads/browser/w3c_batterystatus.js</path-element>
+        <path-element>../../../target/downloads/browser/w3c_composition_event.js</path-element>
         <path-element>../../../target/downloads/browser/w3c_css.js</path-element>
         <path-element>../../../target/downloads/browser/w3c_css3d.js</path-element>
         <path-element>../../../target/downloads/browser/w3c_device_sensor_event.js</path-element>
@@ -168,16 +169,73 @@
         <class>DataTransferItem</class>
         <name>webkitGetAsEntry</name>
     </exclude>
+    <exclude>
+        <class>Document</class>
+        <name>loadXML</name>
+    </exclude>
+    <exclude>
+        <class>Event</class>
+        <name>initUIEvent</name>
+    </exclude>
+    <exclude>
+        <class>Event</class>
+        <name>initMessageEvent</name>
+    </exclude>
+    <exclude>
+        <class>Element</class>
+        <name>load</name>
+    </exclude>
+    <exclude>
+        <class>Document</class>
+        <name>open</name>
+    </exclude>
+    <exclude>
+        <class>Document</class>
+        <name>close</name>
+    </exclude>
+    <exclude>
+        <class>Document</class>
+        <name>createTreeWalker</name>
+    </exclude>
     <!-- SVG -->
     <exclude><class>SVGStylable</class><name>className</name></exclude>
     <exclude><class>SVGStylable</class><name>style</name></exclude>
     <exclude><class>SVGLocatable</class><name>farthestViewportElement</name></exclude>
     <exclude><class>SVGLocatable</class><name>nearestViewportElement</name></exclude>
+    
 
     <!-- read-only properties where we only emit a 'get' accessor method -->
     <field-readonly>
         <class>Date</class>
         <name>timezoneOffset</name>
     </field-readonly>
+    
+    <!-- externs use @const for both read-only as well as true constants
+         and you can't give the const an initial value either.
+         From a JS perspective that's fine, you can't write to a const or
+         a read-only and the initial value doesn't matter since it will
+         be provided by the extern, but we want true constants in order 
+         to allow constants as parameter initializers and other places
+         where compile-time constants are required -->
+    <true-constant>
+        <class>int</class>
+        <name>MAX_VALUE</name>
+        <value>2147483647</value>
+    </true-constant>
+    <true-constant>
+        <class>int</class>
+        <name>MIN_VALUE</name>
+        <value>-2147483648</value>
+    </true-constant>
+    <true-constant>
+        <class>uint</class>
+        <name>MAX_VALUE</name>
+        <value>4294967295</value>
+    </true-constant>
+    <true-constant>
+        <class>uint</class>
+        <name>MIN_VALUE</name>
+        <value>0</value>
+    </true-constant>
     
 </royale-config>
